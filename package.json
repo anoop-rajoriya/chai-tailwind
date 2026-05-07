@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "dev:lib": "vite build --config vite.lib.config.js --watch",
-    "dev": "vite"
+    "dev": "vite",
+    "build:lib": "vite build --config vite.lib.config.js",
+    "build:site": "vite build --config vite.config.js",
+    "build": "pnpm build:lib && build:site"
   },
   "keywords": [],
   "author": "",
