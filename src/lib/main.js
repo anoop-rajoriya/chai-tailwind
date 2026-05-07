@@ -1,14 +1,50 @@
-import { staticDict, dynamicDict } from "./dictionary";
+const DOMWind = { prefix: "chai-" };
 
-function parser(cls) {
-  if (!cls.startsWith("chai-")) return null;
+DOMWind.$utils = {
+  static: {
+    flex: { display: "flex" },
+    "flex-col": { flexDirection: "column" },
+    "flex-row": { flexDirection: "row" },
+    "items-center": { alignItems: "center" },
+    "justify-center": { justifyContent: "center" },
+    hidden: { display: "none" },
+    block: { display: "block" },
+  },
+  dynamic: {
+    p: {
+      property: "padding",
+      value: (val) => `${val}px`,
+    },
+    m: {
+      property: "margin",
+      value: (val) => `${val}px`,
+    },
+    bg: {
+      property: "backgroundColor",
+      value: (val) => val,
+    },
+    text: {
+      property: "color",
+      value: (val) => val,
+    },
+    font: {
+      property: "fontSize",
+      value: (val) => `${val}px`,
+    },
+    rounded: {
+      property: "borderRadius",
+      value: (val) => `${val}px`,
+    },
+  },
+};
 
-  const coreClass = cls.replace("chai-", "");
+DOMWind.$parser = function (cls) {
+  const coreClass = cls.replace(this.prefix, "");
   if (!coreClass.length) return null;
 
   //   Handling static classes
-  if (staticDict[coreClass]) {
-    return staticDict[coreClass];
+  if (this.$utils.static[coreClass]) {
+    return this.$utils.static[coreClass];
   }
 
   //   Handling Dynamic classes
@@ -18,31 +54,34 @@ function parser(cls) {
   const prefix = coreClass.substring(0, firstDashIndex);
   const value = coreClass.substring(firstDashIndex + 1);
 
-  const rule = dynamicDict[prefix];
+  const rule = this.$utils.dynamic[prefix];
 
   if (rule) {
     return { [rule.property]: rule.value(value) };
   }
 
   return null;
-}
+};
 
-window.addEventListener("DOMContentLoaded", () => {
-  const elements = document.querySelectorAll('[class*="chai-"]');
-
+DOMWind.$scan = function (root = document) {
+  const elements = root.querySelectorAll(`[class*="${this.prefix}"]`);
   elements.forEach((elm) => {
     const classes = Array.from(elm.classList);
-
     classes.forEach((cls) => {
-      const style = parser(cls);
+      if (!cls.startsWith(this.prefix)) return;
+
+      const style = this.$parser(cls);
 
       if (style) {
-        console.log(`Successfully parsed: ${cls}`, style);
-
+        console.info(`${cls} applyied ✔`);
         Object.assign(elm.style, style);
-
         elm.classList.remove(cls);
       }
     });
   });
-});
+};
+
+window.onload = () => {
+  window.DOMWind = DOMWind;
+  DOMWind.$scan(document);
+};
