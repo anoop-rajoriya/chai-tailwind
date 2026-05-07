@@ -1,0 +1,20 @@
+{
+  "name": "chaicode-inline-tailwind",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "dev:lib": "vite build --config vite.lib.config.js --watch",
+    "build:lib": "vite build --config vite.lib.config.js",
+    "build:site": "vite build --config vite.config.js",
+    "build": "pnpm build:lib && pnpm build:site"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.33.0",
+  "devDependencies": {
+    "vite": "^8.0.11"
+  }
+}
