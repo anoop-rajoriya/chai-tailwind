@@ -3,348 +3,247 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Inline Tailwind | DOMWind Engine</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>DOMWind Engine</title>
+    <link rel="stylesheet" href="/src/site/style.css" />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=JetBrains+Mono&display=swap"
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css"
       rel="stylesheet"
     />
-    <style>
-      body {
-        font-family: "Inter", sans-serif;
-        background-color: #000;
-        color: #fff;
-        scroll-behavior: smooth;
-      }
-      .mono {
-        font-family: "JetBrains Mono", monospace;
-      }
-      .glass {
-        background: rgba(255, 255, 255, 0.03);
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-      }
-      .btn-primary {
-        background: #fff;
-        color: #000;
-        transition: all 0.2s ease;
-      }
-      .btn-primary:hover {
-        background: #e5e5e5;
-        transform: translateY(-1px);
-      }
-      .copy-feedback {
-        opacity: 0;
-        transition: opacity 0.3s;
-      }
-      .feature-card:hover {
-        border-color: rgba(255, 255, 255, 0.4);
-        transform: translateY(-2px);
-      }
-    </style>
   </head>
-  <body class="overflow-x-hidden">
-    <header class="fixed top-0 w-full z-50 glass border-b border-white/10">
-      <nav
-        class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between"
+  <body class="bg-black text-white h-screen">
+    <div
+      id="app"
+      class="w-full max-w-6xl mx-auto min-h-screen relative flex flex-col"
+    >
+      <header
+        class="w-full p-4 border-b border-white/20 flex items-center justify-between"
       >
-        <div class="text-lg font-bold tracking-tighter">
-          INLINE
-          <span class="text-gray-500 underline decoration-1 underline-offset-4"
-            >TAILWIND</span
-          >
+        <div id="logo" class="text-lg md:text-xl font-semibold cursor-pointer">
+          <span class="text-white/60">DOM</span>Wind
         </div>
-        <div class="hidden md:flex space-x-8 text-sm text-gray-400">
+        <nav
+          class="flex-1 hidden md:flex gap-4 justify-end text-sm text-white/60"
+        >
+          <a href="#how-to-use" class="hover:text-white transition-colors"
+            >How to use</a
+          >
           <a href="#features" class="hover:text-white transition-colors"
             >Features</a
           >
-          <a href="#playground" class="hover:text-white transition-colors"
-            >Playground</a
-          >
-        </div>
-        <button class="md:hidden text-white">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <line x1="3" y1="12" x2="21" y2="12"></line>
-            <line x1="3" y1="6" x2="21" y2="6"></line>
-            <line x1="3" y1="18" x2="21" y2="18"></line>
-          </svg>
-        </button>
-      </nav>
-    </header>
-
-    <section class="pt-32 pb-20 px-6">
-      <div class="max-w-4xl mx-auto text-center">
-        <h1 class="text-5xl md:text-7xl font-bold tracking-tight mb-6">
-          Utility CSS without the <br /><span class="text-gray-500 italic"
-            >build step.</span
-          >
-        </h1>
-        <p
-          class="text-lg text-gray-400 mb-10 max-w-2xl mx-auto leading-relaxed"
-        >
-          Powered by the <code class="text-white">DOMWind</code> engine. Parse
-          utility classes directly in the browser for rapid prototyping and
-          dynamic styling using the
-          <code class="text-white">chai-</code> prefix.
-        </p>
-
-        <div
-          class="flex flex-col md:flex-row items-center justify-center gap-4"
-        >
-          <a
-            href="#playground"
-            class="btn-primary px-8 py-3 rounded-full font-semibold w-full md:w-auto"
-          >
-            Try it Live
-          </a>
-          <div class="relative flex items-center group w-full md:w-auto">
-            <code
-              class="glass px-6 py-3 rounded-full text-sm mono text-gray-300 w-full md:w-auto pr-16"
+          <a href="#playground" class="hover:text-white">Playground</a>
+        </nav>
+      </header>
+      <main class="flex-1">
+        <section id="hero" class="p-4 py-12 border-b border-white/20">
+          <div class="max-w-2xl mx-auto">
+            <h1 class="text-3xl md:text-5xl font-bold text-center pb-3">
+              Lightweight utility-first CSS engine without the
+              <span class="text-white/60"> build step </span>
+            </h1>
+            <p
+              class="text-sm md:text-base text-white/60 font-semibold text-center"
             >
-              &lt;script src="inline-tailwind.min.js"&gt;&lt;/script&gt;
-            </code>
-            <button
-              id="copyBtn"
-              class="absolute right-2 bg-white/10 hover:bg-white/20 p-2 rounded-full transition-all"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                <path
-                  d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
-                ></path>
-              </svg>
-            </button>
-            <span
-              id="copyMsg"
-              class="copy-feedback absolute -top-10 left-1/2 -translate-x-1/2 text-xs bg-white text-black px-2 py-1 rounded"
-              >Copied!</span
-            >
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="features" class="py-20 px-6 border-t border-white/5">
-      <div class="max-w-7xl mx-auto">
-        <h2
-          class="text-sm uppercase tracking-widest text-gray-500 mb-12 text-center"
-        >
-          Supported Utilities
-        </h2>
-        <div class="grid md:grid-cols-3 gap-6">
-          <div class="feature-card glass p-8 rounded-2xl transition-all">
-            <h3 class="text-xl font-bold mb-4">Layout</h3>
-            <ul class="text-gray-400 mono text-sm space-y-2">
-              <li>chai-flex</li>
-              <li>chai-flex-col</li>
-              <li>chai-items-center</li>
-              <li>chai-justify-center</li>
-            </ul>
-          </div>
-          <div
-            class="feature-card glass p-8 rounded-2xl transition-all border-white/20"
-          >
-            <h3 class="text-xl font-bold mb-4">Dynamic</h3>
-            <ul class="text-gray-400 mono text-sm space-y-2">
-              <li>chai-p-{val}</li>
-              <li>chai-m-{val}</li>
-              <li>chai-rounded-{val}</li>
-              <li>chai-font-{val}</li>
-            </ul>
-          </div>
-          <div class="feature-card glass p-8 rounded-2xl transition-all">
-            <h3 class="text-xl font-bold mb-4">Appearance</h3>
-            <ul class="text-gray-400 mono text-sm space-y-2">
-              <li>chai-bg-{color}</li>
-              <li>chai-text-{color}</li>
-              <li>chai-block</li>
-              <li>chai-hidden</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="playground" class="py-20 px-6 bg-[#050505]">
-      <div class="max-w-7xl mx-auto">
-        <div class="flex flex-col md:flex-row gap-12 items-center">
-          <div class="w-full md:w-1/2">
-            <h2 class="text-3xl font-bold mb-6 italic">
-              Quick Test Playground
-            </h2>
-            <p class="text-gray-400 mb-8 leading-relaxed">
-              Edit the class list below to see the
-              <span class="text-white mono">DOMWind</span> engine parse styles
-              in real-time. Classes are immediately converted to inline styles
-              and removed from the DOM.
+              Powered by the
+              <span class="text-white">Vanilla JS DOMWind engine</span>. Parse
+              utility classes directly in the browser for rapid prototyping and
+              dynamic styling using the
+              <span class="text-white">"chai-"</span> prefix.
             </p>
-            <div class="space-y-4">
-              <label class="text-xs uppercase text-gray-500 mono"
-                >Live Class Input</label
+            <div class="flex flex-col md:flex-row gap-4 pt-12 items-center">
+              <a
+                href="#"
+                class="border bg-white text-black hover:opacity-90 transition-opacity flex items-center justify-center font-semibold capitalize text-lg rounded-full h-12 w-full md:w-48 max-w-sm"
+                >Github Repo</a
               >
-              <input
-                id="demoInput"
-                type="text"
-                value="chai-flex chai-items-center chai-justify-center chai-bg-white chai-text-black chai-p-40 chai-rounded-20"
-                class="w-full bg-white/5 border border-white/10 px-4 py-3 rounded-lg mono text-sm focus:outline-none focus:border-white/40 transition-colors"
-              />
+              <button
+                class="border bg-transparent text-white/80 flex items-center justify-center text-sm font-semibold rounded-full h-12 w-full max-w-sm md:max-w-lg cursor-copy"
+              >
+                <code
+                  class="flex-1 text-center font-mono px-4 text-nowrap text-ellipsis overflow-hidden"
+                  >&lt;script src="domwind.min.js"&gt;&lt;/script&gt;</code
+                >
+                <div
+                  class="size-8 bg-white/20 rounded-full flex items-center justify-center mr-1"
+                >
+                  <i class="ri-file-copy-line"></i>
+                </div>
+              </button>
             </div>
           </div>
-
+        </section>
+        <section id="how-to-use" class="p-4 py-12 border-b border-white/20">
+          <h2
+            class="text-xl font-bold text-white/60 text-center uppercase pb-10 md:pb-16"
+          >
+            How to use DOMWind
+          </h2>
           <div
-            class="w-full md:w-1/2 flex justify-center items-center h-64 glass rounded-3xl relative overflow-hidden"
-            id="previewContainer"
+            class="grid md:grid-cols-3 gap-10 md:gap-6 relative px-2 md:px-0"
           >
             <div
-              class="absolute top-4 left-4 text-[10px] uppercase text-gray-600 mono"
+              id="card"
+              class="border-white/20 border-l md:border-l-0 md:border-t pl-6 md:pl-0 md:pt-6 relative"
             >
-              Live Preview
+              <span
+                id="number"
+                class="block size-8 border-white/20 border-2 rounded-full bg-black text-center absolute -left-0.5 md:left-0 top-0 md:-top-0.5 -translate-x-1/2 md:translate-x-0 md:-translate-y-1/2"
+                >1</span
+              >
+              <h3 class="text-xl font-bold mb-3">Include the Engine</h3>
+              <p class="text-white/60 text-sm mb-6 leading-relaxed">
+                Link the DOMWind script at the bottom of your HTML document. It
+                automatically initializes and scans the DOM on load.
+              </p>
+              <pre
+                class="rounded-lg p-4 bg-white/10 overflow-x-auto"
+              ><code class="text-xs mono text-white/80 whitespace-nowrap">&lt;script src="domwind.js"&gt;&lt;/script&gt;</code></pre>
             </div>
             <div
-              id="previewTarget"
-              class="chai-flex chai-items-center chai-justify-center chai-bg-white chai-text-black chai-p-40 chai-rounded-20"
+              id="card"
+              class="border-white/20 border-l md:border-l-0 md:border-t pl-6 md:pl-0 md:pt-6 relative"
             >
-              <span class="font-bold">DOMWind Active</span>
+              <span
+                id="number"
+                class="block size-8 border-white/20 border-2 rounded-full bg-black text-center absolute -left-0.5 md:left-0 top-0 md:-top-0.5 -translate-x-1/2 md:translate-x-0 md:-translate-y-1/2"
+                >1</span
+              >
+              <h3 class="text-xl font-bold mb-3">Add Utility Classes</h3>
+              <p class="text-white/60 text-sm mb-6 leading-relaxed">
+                Construct your UI using the
+                <span class="text-white">chai-</span> prefix. The engine will
+                target only these specific classes.
+              </p>
+              <pre
+                class="rounded-lg p-4 bg-white/10 overflow-x-auto"
+              ><code class="text-xs mono text-white/80 whitespace-nowrap">&lt;div class="chai-flex chai-bg-black"&gt;<br />&nbsp;&nbsp;Content<br />&lt;/div&gt;</code></pre>
+            </div>
+            <div
+              id="card"
+              class="border-white/20 border-l md:border-l-0 md:border-t pl-6 md:pl-0 md:pt-6 relative"
+            >
+              <span
+                id="number"
+                class="block size-8 border-white/20 border-2 rounded-full bg-black text-center absolute -left-0.5 md:left-0 top-0 md:-top-0.5 -translate-x-1/2 md:translate-x-0 md:-translate-y-1/2"
+                >1</span
+              >
+              <h3 class="text-xl font-bold mb-3">Watch it Render</h3>
+              <p class="text-white/60 text-sm mb-6 leading-relaxed">
+                <span class="text-white">DOMWind</span> instantly calculates the
+                CSS, maps it to inline styles, and cleans up the class list to
+                keep your DOM tidy
+              </p>
+              <pre
+                class="rounded-lg p-4 bg-white/10 overflow-x-auto"
+              ><code class="text-xs mono text-white/80 whitespace-nowrap">&lt;div style="display: flex; background: black;"&gt;<br />&nbsp;&nbsp;Content<br />&lt;/div&gt;</code></pre>
             </div>
           </div>
-        </div>
-      </div>
-    </section>
-
-    <footer class="py-12 px-6 border-t border-white/5 text-center">
-      <div
-        class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6"
-      >
-        <div class="text-sm text-gray-500">
-          © 2026 ChaiCode Cohort. Built with passion.
-        </div>
-        <div class="flex space-x-6 text-sm text-gray-400">
-          <a
-            href="https://github.com"
-            class="hover:text-white transition-colors"
-            >GitHub</a
+        </section>
+        <section id="features" class="p-4 py-12 border-b border-white/20">
+          <h2
+            class="text-xl font-bold text-white/60 text-center uppercase pb-10 md:pb-16"
           >
-          <a href="#" class="hover:text-white transition-colors">Twitter / X</a>
-          <a href="#" class="hover:text-white transition-colors">LinkedIn</a>
-        </div>
-      </div>
-    </footer>
-
-    <script>
-      // Your exact DOMWind Engine logic
-      const DOMWind = { prefix: "chai-" };
-
-      DOMWind.$utils = {
-        static: {
-          flex: { display: "flex" },
-          "flex-col": { flexDirection: "column" },
-          "flex-row": { flexDirection: "row" },
-          "items-center": { alignItems: "center" },
-          "justify-center": { justifyContent: "center" },
-          hidden: { display: "none" },
-          block: { display: "block" },
-        },
-        dynamic: {
-          p: { property: "padding", value: (val) => `${val}px` },
-          m: { property: "margin", value: (val) => `${val}px` },
-          bg: { property: "backgroundColor", value: (val) => val },
-          text: { property: "color", value: (val) => val },
-          font: { property: "fontSize", value: (val) => `${val}px` },
-          rounded: { property: "borderRadius", value: (val) => `${val}px` },
-        },
-      };
-
-      DOMWind.$parser = function (cls) {
-        const coreClass = cls.replace(this.prefix, "");
-        if (!coreClass.length) return null;
-
-        if (this.$utils.static[coreClass]) {
-          return this.$utils.static[coreClass];
-        }
-
-        const firstDashIndex = coreClass.indexOf("-");
-        if (firstDashIndex === -1) return null;
-
-        const prefix = coreClass.substring(0, firstDashIndex);
-        const value = coreClass.substring(firstDashIndex + 1);
-
-        const rule = this.$utils.dynamic[prefix];
-
-        if (rule) {
-          return { [rule.property]: rule.value(value) };
-        }
-        return null;
-      };
-
-      DOMWind.$scan = function (root = document) {
-        const elements = root.querySelectorAll(`[class*="${this.prefix}"]`);
-        elements.forEach((elm) => {
-          const classes = Array.from(elm.classList);
-          classes.forEach((cls) => {
-            if (!cls.startsWith(this.prefix)) return;
-
-            const style = this.$parser(cls);
-
-            if (style) {
-              Object.assign(elm.style, style);
-              elm.classList.remove(cls);
-            }
-          });
-        });
-      };
-
-      // Playground interaction logic
-      const demoInput = document.getElementById("demoInput");
-      const previewTarget = document.getElementById("previewTarget");
-      const previewContainer = document.getElementById("previewContainer");
-
-      function updatePlayground() {
-        // Reset the style object and inject the new raw classes
-        previewTarget.style.cssText = "";
-        previewTarget.className = demoInput.value;
-        // Tell DOMWind to scan just the preview container
-        DOMWind.$scan(previewContainer);
-      }
-
-      demoInput.addEventListener("input", updatePlayground);
-
-      // Run once on load
-      window.addEventListener("DOMContentLoaded", () => {
-        window.DOMWind = DOMWind;
-        DOMWind.$scan(document);
-      });
-
-      // Copy Button Interaction
-      const copyBtn = document.getElementById("copyBtn");
-      const copyMsg = document.getElementById("copyMsg");
-
-      copyBtn.addEventListener("click", () => {
-        navigator.clipboard.writeText(
-          '<script src="https://cdn.example.com/inline-tailwind.min.js"><\/script>',
-        );
-        copyMsg.style.opacity = "1";
-        setTimeout(() => (copyMsg.style.opacity = "0"), 2000);
-      });
-    </script>
+            Supported Utilities
+          </h2>
+          <div
+            class="grid md:grid-cols-3 gap-10 md:gap-6 relative px-2 md:px-0"
+          >
+            <div
+              id="feature-card"
+              class="p-6 border-white/20 border rounded-xl bg-white/5"
+            >
+              <h3 class="text-lg md:text-xl font-semibold pb-4">Layout</h3>
+              <ul class="list-disc pl-10 text-white/80">
+                <li>chai-flex</li>
+                <li>chai-flex-col</li>
+                <li>chai-items-center</li>
+                <li>chai-justify-center</li>
+              </ul>
+            </div>
+            <div
+              id="feature-card"
+              class="p-6 border-white/20 border rounded-xl bg-white/5"
+            >
+              <h3 class="text-lg md:text-xl font-semibold pb-4">
+                Dynamic Properties
+              </h3>
+              <ul class="list-disc pl-10 text-white/80">
+                <li>chai-p-{val}</li>
+                <li>chai-m-{val}</li>
+                <li>chai-rounded-{val}</li>
+                <li>chai-font-{val}</li>
+              </ul>
+            </div>
+            <div
+              id="feature-card"
+              class="p-6 border-white/20 border rounded-xl bg-white/5"
+            >
+              <h3 class="text-lg md:text-xl font-semibold pb-4">Appearance</h3>
+              <ul class="list-disc pl-10 text-white/80">
+                <li>chai-bg-{color}</li>
+                <li>chai-text-{color}</li>
+                <li>chai-block</li>
+                <li>chai-hidden</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+        <section id="playground" class="p-4 py-12 border-b border-white/20">
+          <div class="flex flex-col lg:flex-row gap-6 md:gap-10 items-center">
+            <div id="controls" class="w-full md:w-1/2">
+              <h2 class="text-3xl font-bold mb-6 italic">
+                Quick Test Playground
+              </h2>
+              <p class="text-white/60 mb-8 leading-relaxed">
+                Edit the class list below to see the
+                <span class="text-white">DOMWind</span> engine parse styles in
+                real-time. Classes are immediately converted to inline styles
+                and removed from the DOM.
+              </p>
+              <label id="class-controls" class="flex flex-col gap-4">
+                <span
+                  class="text-xs uppercase text-white/60 mono font-semibold tracking-wider"
+                  >live class input</span
+                >
+                <input
+                  id="demoInput"
+                  type="text"
+                  value="chai-flex chai-items-center chai-justify-center chai-bg-white chai-text-black chai-p-40 chai-rounded-20"
+                  class="w-full bg-white/5 border border-white/10 px-5 py-4 rounded-xl mono text-sm focus:outline-none focus:border-white/40 focus:bg-white/10 transition-all"
+                />
+              </label>
+            </div>
+            <div
+              id="preview"
+              class="w-full md:w-1/2 flex justify-center items-center h-72 rounded-3xl relative overflow-hidden border border-white/20 bg-white/5"
+            >
+              <span
+                class="absolute top-5 left-5 text-[10px] uppercase text-white/60 mono font-bold tracking-widest"
+                >live preview target</span
+              >
+              <div
+                id="previewTarget"
+                class="chai-flex chai-items-center chai-justify-center chai-bg-white chai-text-black chai-p-40 chai-rounded-20"
+              >
+                DOMWind Active
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+      <footer
+        class="flex flex-col md:flex-row gap-2 items-center md:justify-between p-4 border-t border-white/20"
+      >
+        <p class="text-sm text-white/60 text-center">
+          © 2026 ChaiCode Cohort Assignment. Built by anoop.
+        </p>
+        <nav class="text-sm text-white/60 flex items-center gap-2">
+          <a href="#" class="hover:text-white">Github</a>
+          <a href="#" class="hover:text-white">Twitter</a>
+          <a href="#" class="hover:text-white">Linkedin</a>
+        </nav>
+      </footer>
+    </div>
+    <script src="/public/lib/inline-tailwind.min.js"></script>
+    <script src="/src/site/main.js"></script>
   </body>
 </html>
