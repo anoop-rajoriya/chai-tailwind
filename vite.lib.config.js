@@ -7,8 +7,8 @@ export default defineConfig({
     emptyOutDir: false,
     lib: {
       entry: resolve(__dirname, "src/lib/main.js"),
-      name: "InlineTailwind",
-      fileName: () => "inline-tailwind.min.js",
+      name: "chaiTailwind",
+      fileName: () => "chaiTailwind.min.js",
       formats: ["iife"],
     },
   },

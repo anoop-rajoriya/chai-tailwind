@@ -1,6 +1,6 @@
-const DOMWind = { prefix: "chai-" };
+const ChaiTail = { prefix: "chai-" };
 
-DOMWind.$utils = {
+ChaiTail.$utils = {
   static: {
     flex: { display: "flex" },
     "flex-col": { flexDirection: "column" },
@@ -38,7 +38,7 @@ DOMWind.$utils = {
   },
 };
 
-DOMWind.$parser = function (cls) {
+ChaiTail.$parser = function (cls) {
   const coreClass = cls.replace(this.prefix, "");
   if (!coreClass.length) return null;
 
@@ -63,7 +63,7 @@ DOMWind.$parser = function (cls) {
   return null;
 };
 
-DOMWind.$scan = function (root = document) {
+ChaiTail.$scan = function (root = document) {
   const elements = root.querySelectorAll(`[class*="${this.prefix}"]`);
   elements.forEach((elm) => {
     const classes = Array.from(elm.classList);
@@ -82,6 +82,6 @@ DOMWind.$scan = function (root = document) {
 };
 
 window.onload = () => {
-  window.DOMWind = DOMWind;
-  DOMWind.$scan(document);
+  window.ChaiTail = ChaiTail;
+  ChaiTail.$scan(document);
 };
