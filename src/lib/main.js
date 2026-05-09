@@ -81,7 +81,5 @@ ChaiTail.$scan = function (root = document) {
   });
 };
 
-window.onload = () => {
-  window.ChaiTail = ChaiTail;
-  ChaiTail.$scan(document);
-};
+window.ChaiTail = ChaiTail;
+ChaiTail.$scan(document);

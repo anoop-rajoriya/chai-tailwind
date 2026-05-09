@@ -51,16 +51,21 @@
             </p>
             <div class="flex flex-col md:flex-row gap-4 pt-12 items-center">
               <a
-                href="#"
-                class="border bg-white text-black hover:opacity-90 transition-opacity flex items-center justify-center font-semibold capitalize text-lg rounded-full h-12 w-full md:w-48 max-w-sm"
+                href="https://github.com/anoop-rajoriya/chai-tailwind"
+                target="_blank"
+                class="border bg-white text-black hover:opacity-90 transition-opacity flex items-center justify-center font-semibold capitalize text-lg rounded-full h-12 w-full md:w-48 max-w-sm cursor-pointer"
                 >Github Repo</a
               >
               <button
-                class="border bg-transparent text-white/80 flex items-center justify-center text-sm font-semibold rounded-full h-12 w-full max-w-sm md:max-w-lg cursor-copy"
+                id="cdn-copy-btn"
+                title="copy cdn"
+                class="border bg-transparent text-white/80 flex items-center justify-center text-sm font-semibold rounded-full h-12 w-full max-w-sm md:max-w-lg cursor-pointer"
               >
                 <code
                   class="flex-1 text-center font-mono px-4 text-nowrap text-ellipsis overflow-hidden"
-                  >&lt;script src="chaitail.min.js"&gt;&lt;/script&gt;</code
+                  >&lt;script
+                  src="https://chai-tail-vjs.netlify.app/lib/chaiTailwind.min.js
+                  "&gt;&lt;/script&gt;</code
                 >
                 <div
                   class="size-8 bg-white/20 rounded-full flex items-center justify-center mr-1"
@@ -82,7 +87,7 @@
           >
             <div
               id="card"
-              class="border-white/20 border-l md:border-l-0 md:border-t pl-6 md:pl-0 md:pt-6 relative"
+              class="border-white/20 border-l md:border-l-0 md:border-t pl-6 md:pl-0 md:pt-6 relative w-full min-w-0"
             >
               <span
                 id="number"
@@ -95,17 +100,18 @@
                 automatically initializes and scans the DOM on load.
               </p>
               <pre
-                class="rounded-lg p-4 bg-white/10 overflow-x-auto"
-              ><code class="text-xs mono text-white/80 whitespace-nowrap">&lt;script src="chaitail.js"&gt;&lt;/script&gt;</code></pre>
+                class="rounded-lg p-4 bg-white/10 overflow-x-auto w-full max-w-full"
+              ><code class="text-xs mono text-white/80">&lt;script src="https://chai-tail-vjs.netlify.app/lib/chaiTailwind.min.js
+"&gt;&lt;/script&gt;</code></pre>
             </div>
             <div
               id="card"
-              class="border-white/20 border-l md:border-l-0 md:border-t pl-6 md:pl-0 md:pt-6 relative"
+              class="border-white/20 border-l md:border-l-0 md:border-t pl-6 md:pl-0 md:pt-6 relative w-full min-w-0"
             >
               <span
                 id="number"
                 class="block size-8 border-white/20 border-2 rounded-full bg-black text-center absolute -left-0.5 md:left-0 top-0 md:-top-0.5 -translate-x-1/2 md:translate-x-0 md:-translate-y-1/2"
-                >1</span
+                >2</span
               >
               <h3 class="text-xl font-bold mb-3">Add Utility Classes</h3>
               <p class="text-white/60 text-sm mb-6 leading-relaxed">
@@ -114,17 +120,17 @@
                 target only these specific classes.
               </p>
               <pre
-                class="rounded-lg p-4 bg-white/10 overflow-x-auto"
+                class="rounded-lg p-4 bg-white/10 overflow-x-auto w-full max-w-full"
               ><code class="text-xs mono text-white/80 whitespace-nowrap">&lt;div class="chai-flex chai-bg-black"&gt;<br />&nbsp;&nbsp;Content<br />&lt;/div&gt;</code></pre>
             </div>
             <div
               id="card"
-              class="border-white/20 border-l md:border-l-0 md:border-t pl-6 md:pl-0 md:pt-6 relative"
+              class="border-white/20 border-l md:border-l-0 md:border-t pl-6 md:pl-0 md:pt-6 relative w-full min-w-0"
             >
               <span
                 id="number"
                 class="block size-8 border-white/20 border-2 rounded-full bg-black text-center absolute -left-0.5 md:left-0 top-0 md:-top-0.5 -translate-x-1/2 md:translate-x-0 md:-translate-y-1/2"
-                >1</span
+                >3</span
               >
               <h3 class="text-xl font-bold mb-3">Watch it Render</h3>
               <p class="text-white/60 text-sm mb-6 leading-relaxed">
@@ -133,7 +139,7 @@
                 to keep your DOM tidy
               </p>
               <pre
-                class="rounded-lg p-4 bg-white/10 overflow-x-auto"
+                class="rounded-lg p-4 bg-white/10 overflow-x-auto w-full max-w-full"
               ><code class="text-xs mono text-white/80 whitespace-nowrap">&lt;div style="display: flex; background: black;"&gt;<br />&nbsp;&nbsp;Content<br />&lt;/div&gt;</code></pre>
             </div>
           </div>
@@ -205,7 +211,7 @@
                   >live class input</span
                 >
                 <input
-                  id="demoInput"
+                  id="chaiTail-input"
                   type="text"
                   value="chai-flex chai-items-center chai-justify-center chai-bg-white chai-text-black chai-p-40 chai-rounded-20"
                   class="w-full bg-white/5 border border-white/10 px-5 py-4 rounded-xl mono text-sm focus:outline-none focus:border-white/40 focus:bg-white/10 transition-all"
@@ -221,7 +227,7 @@
                 >live preview target</span
               >
               <div
-                id="previewTarget"
+                id="chaiTail-previewTarget"
                 class="chai-flex chai-items-center chai-justify-center chai-bg-white chai-text-black chai-p-40 chai-rounded-20"
               >
                 chaiTail Active
@@ -243,7 +249,7 @@
         </nav>
       </footer>
     </div>
-    <script src="/lib/chaiTailwind.min.js"></script>
+    <script src="./public/lib/chaiTailwind.min.js"></script>
     <script src="/src/site/main.js"></script>
   </body>
 </html>
